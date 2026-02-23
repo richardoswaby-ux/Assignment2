@@ -81,8 +81,7 @@ def update_record(record_id:UUID, record_put:MaintenanceRecordCreate):
         updated_record.id = record_id
         maintenance_db[record_id] = updated_record
         return updated_record
-      
-   
+    
     else:
         
         updated_record.id = record_id
@@ -113,10 +112,7 @@ def record_delete(record_id: UUID):
             detail=f"Record {record_id} not found."
         )
         
-    # 2. Erase from O(1) memory
     del maintenance_db[record_id]
-    
-    # 3. Return strict 204 No Content signal (Requires 'Response' import)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT)
 
 
